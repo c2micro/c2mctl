@@ -1,0 +1,6 @@
+bin/
+.idea/
+scripts/env
+cpu.pprof
+.devcontainer/
+*.swp
