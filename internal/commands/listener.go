@@ -33,7 +33,7 @@ func listenerListCommand(*console.Console) *cobra.Command {
 			}
 			for _, l := range listeners {
 				fmt.Println(strings.Repeat("-", 42))
-				fmt.Println(utils.PrintListener(l))
+				fmt.Println(utils.PrettyListener(l))
 			}
 			fmt.Println(strings.Repeat("-", 42))
 		},
@@ -54,7 +54,7 @@ func listenerAddCommand(*console.Console) *cobra.Command {
 				}
 				return
 			}
-			fmt.Println(utils.PrintListener(listener))
+			fmt.Println(utils.PrettyListener(listener))
 		},
 	}
 }
@@ -77,7 +77,7 @@ func listenerRevokeCommand(*console.Console) *cobra.Command {
 					color.Red("revoke listener: %s", err.Error())
 				}
 			}
-			color.Green("listener %d token revoked", id)
+			color.Green("token revoked for listener '%d'", id)
 		},
 	}
 }
@@ -102,7 +102,7 @@ func listenerRegenCommand(*console.Console) *cobra.Command {
 				}
 				return
 			}
-			fmt.Println(utils.PrintListener(listener))
+			fmt.Println(utils.PrettyListener(listener))
 		},
 	}
 }

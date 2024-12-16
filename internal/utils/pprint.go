@@ -9,59 +9,55 @@ import (
 	"github.com/docker/go-units"
 )
 
-func PrintOperator(o *managementv1.Operator) string {
+func PrettyOperator(o *managementv1.Operator) string {
 	var s strings.Builder
-	// username
-	s.WriteString(fmt.Sprintf("Username: %s\n", o.Username))
-	// token
+	username := o.Username
+	token := "[none]"
+	last := "[never]"
+
 	if o.Token != nil && o.Token.GetValue() != "" {
-		s.WriteString(fmt.Sprintf("Token:    %s\n", o.Token.GetValue()))
-	} else {
-		s.WriteString("Token:    <none>\n")
+		token = o.Token.GetValue()
 	}
-	// last
 	if !o.Last.AsTime().IsZero() {
-		s.WriteString(fmt.Sprintf("Last:     %s ago", units.HumanDuration(time.Since(o.Last.AsTime()))))
-	} else {
-		s.WriteString("Last:     <never>")
+		last = units.HumanDuration(time.Since(o.Last.AsTime()))
 	}
+
+	s.WriteString(fmt.Sprintf("%-10s %s\n", "Username:", username))
+	s.WriteString(fmt.Sprintf("%-10s %s\n", "Token:", token))
+	s.WriteString(fmt.Sprintf("%-10s %s", "Last:", last))
 	return s.String()
 }
 
-func PrintListener(l *managementv1.Listener) string {
+func PrettyListener(l *managementv1.Listener) string {
 	var s strings.Builder
-	// id
-	s.WriteString(fmt.Sprintf("ID:    %d\n", l.Lid))
-	// token
+	id := fmt.Sprintf("%d", l.Lid)
+	token := "[none]"
+	name := "[none]"
+	ip := "[none]"
+	port := "[none]"
+	last := "[none]"
+
 	if l.Token != nil && l.Token.GetValue() != "" {
-		s.WriteString(fmt.Sprintf("Token: %s\n", l.Token.GetValue()))
-	} else {
-		s.WriteString("Token: <none>\n")
+		token = l.Token.GetValue()
 	}
-	// name
-	if l.Name != nil {
-		s.WriteString(fmt.Sprintf("Name:  %s\n", l.Name.GetValue()))
-	} else {
-		s.WriteString("Name:  <none>\n")
+	if l.Name != nil && l.Name.GetValue() != "" {
+		name = l.Name.GetValue()
 	}
-	// ip
-	if l.Ip != nil {
-		s.WriteString(fmt.Sprintf("IP:    %s\n", l.Ip.GetValue()))
-	} else {
-		s.WriteString("IP:    <none>\n")
+	if l.Ip != nil && l.Ip.GetValue() != "" {
+		ip = l.Ip.GetValue()
 	}
-	// port
-	if l.Port != nil {
-		s.WriteString(fmt.Sprintf("Port:  %d\n", l.Port.GetValue()))
-	} else {
-		s.WriteString("Port:  <none>\n")
+	if l.Port != nil && l.Port.GetValue() != 0 {
+		port = l.Port.String()
 	}
-	// last
 	if !l.Last.AsTime().IsZero() {
-		s.WriteString(fmt.Sprintf("Last:  %s ago", units.HumanDuration(time.Since(l.Last.AsTime()))))
-	} else {
-		s.WriteString("Last:  <never>")
+		last = units.HumanDuration(time.Since(l.Last.AsTime()))
 	}
 
+	s.WriteString(fmt.Sprintf("%-10s %s\n", "ID:", id))
+	s.WriteString(fmt.Sprintf("%-10s %s\n", "Token:", token))
+	s.WriteString(fmt.Sprintf("%-10s %s\n", "Name:", name))
+	s.WriteString(fmt.Sprintf("%-10s %s\n", "IP:", ip))
+	s.WriteString(fmt.Sprintf("%-10s %s\n", "Port:", port))
+	s.WriteString(fmt.Sprintf("%-10s %s", "Last:", last))
 	return s.String()
 }

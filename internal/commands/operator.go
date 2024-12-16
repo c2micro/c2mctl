@@ -34,7 +34,7 @@ func operatorListCommand(*console.Console) *cobra.Command {
 			}
 			for _, o := range operators {
 				fmt.Println(strings.Repeat("-", 42))
-				fmt.Println(utils.PrintOperator(o))
+				fmt.Println(utils.PrettyOperator(o))
 			}
 			fmt.Println(strings.Repeat("-", 42))
 		},
@@ -63,7 +63,7 @@ func operatorAddCommand(*console.Console) *cobra.Command {
 				}
 				return
 			}
-			fmt.Println(utils.PrintOperator(operator))
+			fmt.Println(utils.PrettyOperator(operator))
 		},
 	}
 }
@@ -86,7 +86,7 @@ func operatorRevokeCommand(*console.Console) *cobra.Command {
 					color.Red("revoke operator: %s", err.Error())
 				}
 			}
-			color.Green("%s token revoked", username)
+			color.Green("token revoked for '%s'", username)
 		},
 	}
 }
@@ -111,7 +111,7 @@ func operatorRegenCommand(*console.Console) *cobra.Command {
 				}
 				return
 			}
-			fmt.Println(utils.PrintOperator(operator))
+			fmt.Println(utils.PrettyOperator(operator))
 		},
 	}
 }
