@@ -15,8 +15,9 @@ import (
 
 func listenerListCommand(*console.Console) *cobra.Command {
 	return &cobra.Command{
-		Use:   "list",
-		Short: "list listeners",
+		Use:                   "list",
+		Short:                 "list listeners",
+		DisableFlagsInUseLine: true,
 		Run: func(cmd *cobra.Command, _ []string) {
 			listeners, err := service.ListListeners()
 			if err != nil {
@@ -41,8 +42,9 @@ func listenerListCommand(*console.Console) *cobra.Command {
 
 func listenerAddCommand(*console.Console) *cobra.Command {
 	return &cobra.Command{
-		Use:   "add",
-		Short: "add new listener",
+		Use:                   "add",
+		Short:                 "add new listener",
+		DisableFlagsInUseLine: true,
 		Run: func(cmd *cobra.Command, args []string) {
 			listener, err := service.AddListener()
 			if err != nil {
@@ -59,9 +61,10 @@ func listenerAddCommand(*console.Console) *cobra.Command {
 
 func listenerRevokeCommand(*console.Console) *cobra.Command {
 	return &cobra.Command{
-		Use:   "revoke",
-		Short: "revoke listener's token",
-		Args:  cobra.MinimumNArgs(1),
+		Use:                   "revoke",
+		Short:                 "revoke listener's token",
+		DisableFlagsInUseLine: true,
+		Args:                  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			id, err := strconv.Atoi(args[0])
 			if err != nil {
@@ -81,9 +84,10 @@ func listenerRevokeCommand(*console.Console) *cobra.Command {
 
 func listenerRegenCommand(*console.Console) *cobra.Command {
 	return &cobra.Command{
-		Use:   "regen",
-		Short: "regen listener's token",
-		Args:  cobra.MinimumNArgs(1),
+		Use:                   "regen",
+		Short:                 "regen listener's token",
+		DisableFlagsInUseLine: true,
+		Args:                  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			id, err := strconv.Atoi(args[0])
 			if err != nil {
@@ -105,12 +109,10 @@ func listenerRegenCommand(*console.Console) *cobra.Command {
 
 func listenerCommand(c *console.Console) *cobra.Command {
 	listenerCmd := &cobra.Command{
-		Use:     "listener",
-		Short:   "manage listeners",
-		GroupID: listenerGroupId,
-		Run: func(cmd *cobra.Command, _ []string) {
-			cmd.Usage()
-		},
+		Use:                   "listener",
+		Short:                 "manage listeners",
+		GroupID:               listenerGroupId,
+		DisableFlagsInUseLine: true,
 	}
 
 	listenerCmd.AddCommand(

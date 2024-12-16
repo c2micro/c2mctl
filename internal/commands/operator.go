@@ -16,8 +16,9 @@ import (
 
 func operatorListCommand(*console.Console) *cobra.Command {
 	return &cobra.Command{
-		Use:   "list",
-		Short: "list operators",
+		Use:                   "list",
+		Short:                 "list operators",
+		DisableFlagsInUseLine: true,
 		Run: func(cmd *cobra.Command, _ []string) {
 			operators, err := service.ListOperators()
 			if err != nil {
@@ -42,9 +43,10 @@ func operatorListCommand(*console.Console) *cobra.Command {
 
 func operatorAddCommand(*console.Console) *cobra.Command {
 	return &cobra.Command{
-		Use:   "add",
-		Short: "add new operator",
-		Args:  cobra.MinimumNArgs(1),
+		Use:                   "add",
+		Short:                 "add new operator",
+		Args:                  cobra.MinimumNArgs(1),
+		DisableFlagsInUseLine: true,
 		Run: func(cmd *cobra.Command, args []string) {
 			username := args[0]
 			if len(username) < defaults.OperatorUsernameMinLength || len(username) > defaults.OperatorUsernameMaxLength {
@@ -68,9 +70,10 @@ func operatorAddCommand(*console.Console) *cobra.Command {
 
 func operatorRevokeCommand(*console.Console) *cobra.Command {
 	return &cobra.Command{
-		Use:   "revoke",
-		Short: "revoke operator's token",
-		Args:  cobra.MinimumNArgs(1),
+		Use:                   "revoke",
+		Short:                 "revoke operator's token",
+		Args:                  cobra.MinimumNArgs(1),
+		DisableFlagsInUseLine: true,
 		Run: func(cmd *cobra.Command, args []string) {
 			username := args[0]
 			if len(username) < defaults.OperatorUsernameMinLength || len(username) > defaults.OperatorUsernameMaxLength {
@@ -90,9 +93,10 @@ func operatorRevokeCommand(*console.Console) *cobra.Command {
 
 func operatorRegenCommand(*console.Console) *cobra.Command {
 	return &cobra.Command{
-		Use:   "regen",
-		Short: "regen operator's token",
-		Args:  cobra.MinimumNArgs(1),
+		Use:                   "regen",
+		Short:                 "regen operator's token",
+		Args:                  cobra.MinimumNArgs(1),
+		DisableFlagsInUseLine: true,
 		Run: func(cmd *cobra.Command, args []string) {
 			username := args[0]
 			if len(username) < defaults.OperatorUsernameMinLength || len(username) > defaults.OperatorUsernameMaxLength {
@@ -114,12 +118,10 @@ func operatorRegenCommand(*console.Console) *cobra.Command {
 
 func operatorCommand(c *console.Console) *cobra.Command {
 	operatorCmd := &cobra.Command{
-		Use:     "operator",
-		Short:   "manage operators",
-		GroupID: operatorGroupId,
-		Run: func(cmd *cobra.Command, _ []string) {
-			cmd.Usage()
-		},
+		Use:                   "operator",
+		Short:                 "manage operators",
+		GroupID:               operatorGroupId,
+		DisableFlagsInUseLine: true,
 	}
 
 	operatorCmd.AddCommand(
