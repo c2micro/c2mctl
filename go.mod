@@ -3,7 +3,7 @@ module github.com/c2micro/c2mcli
 go 1.23.4
 
 require (
-	github.com/c2micro/c2mshr v0.0.0-20241216152422-3776a4609cc5
+	github.com/c2micro/c2mshr v0.0.0-20241216182800-f79ec97e0c51
 	github.com/docker/go-units v0.5.0
 	github.com/fatih/color v1.18.0
 	github.com/go-faster/sdk v0.15.2

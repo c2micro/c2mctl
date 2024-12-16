@@ -1,4 +1,4 @@
-# github.com/c2micro/c2mshr v0.0.0-20241216152422-3776a4609cc5
+# github.com/c2micro/c2mshr v0.0.0-20241216182800-f79ec97e0c51
 ## explicit; go 1.22.4
 github.com/c2micro/c2mshr/defaults
 github.com/c2micro/c2mshr/proto/gen/common/v1

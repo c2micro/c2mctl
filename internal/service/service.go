@@ -128,3 +128,21 @@ func RevokeListener(id int64) error {
 	_, err := getSvc().RevokeListener(ctx, &managementv1.RevokeListenerRequest{Lid: id})
 	return err
 }
+
+func GetCertCA() (*managementv1.GetCertCAResponse, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancel()
+	return getSvc().GetCertCA(ctx, &managementv1.GetCertCARequest{})
+}
+
+func GetCertOperator() (*managementv1.GetCertOperatorResponse, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancel()
+	return getSvc().GetCertOperator(ctx, &managementv1.GetCertOperatorRequest{})
+}
+
+func GetCertListener() (*managementv1.GetCertListenerResponse, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
+	defer cancel()
+	return getSvc().GetCertListener(ctx, &managementv1.GetCertListenerRequest{})
+}

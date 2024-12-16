@@ -15,6 +15,7 @@ func Commands(app *console.Console) console.Commands {
 			&cobra.Group{ID: globalGroupId, Title: globalGroupId},
 			&cobra.Group{ID: operatorGroupId, Title: operatorGroupId},
 			&cobra.Group{ID: listenerGroupId, Title: listenerGroupId},
+			&cobra.Group{ID: pkiGroupId, Title: pkiGroupId},
 		)
 		// exit
 		rootCmd.AddCommand(exitCommand(app))
@@ -22,7 +23,9 @@ func Commands(app *console.Console) console.Commands {
 		rootCmd.AddCommand(operatorCommand(app))
 		// listener
 		rootCmd.AddCommand(listenerCommand(app))
-		
+		// pki
+		rootCmd.AddCommand(pkiCommand(app))
+
 		rootCmd.SetHelpCommandGroupID(globalGroupId)
 		rootCmd.InitDefaultHelpCmd()
 		rootCmd.CompletionOptions.DisableDefaultCmd = true
