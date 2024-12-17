@@ -47,7 +47,7 @@ func PrettyListener(l *managementv1.Listener) string {
 		ip = l.Ip.GetValue()
 	}
 	if l.Port != nil && l.Port.GetValue() != 0 {
-		port = l.Port.String()
+		port = fmt.Sprintf("%d", l.Port.GetValue())
 	}
 	if !l.Last.AsTime().IsZero() {
 		last = units.HumanDuration(time.Since(l.Last.AsTime()))
